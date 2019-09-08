@@ -1,4 +1,8 @@
+/* Importing libraries */
+
 const mongoose = require('mongoose');
+
+/* Defining our User Schema to export into MongoDB */
 
 const userSchema = new mongoose.Schema({
   name: {

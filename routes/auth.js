@@ -1,13 +1,16 @@
+/* Impoting Libraries */
+
 const router = require('express').Router();
 const User = require('../model/User');
 const { registerValidation, loginValidation } = require('../validation');
 const jwt = require('jsonwebtoken');
 const bcrypt = require('bcryptjs');
+
 /* Rules */
 
 router.post('/register', async (req, res) => {
 
-  /* Validation */
+  /* Validation if there's an error */
 
   const { error } = registerValidation(req.body);
 
@@ -24,7 +27,7 @@ router.post('/register', async (req, res) => {
   const salt = await bcrypt.genSalt(10);
   const hashedPassword = await bcrypt.hash(req.body.password, salt);
 
-  /* Creating a new user */
+  /* Creating a new user if request is not bad */
 
   const user = new User({
     name: req.body.name,
@@ -40,7 +43,11 @@ router.post('/register', async (req, res) => {
   }
 })
 
+/* Login */
+
 router.post('/login', async (req, res) => {
+
+  /* Checking if it's a bad request */
 
   const { error } = loginValidation(req.body);
 

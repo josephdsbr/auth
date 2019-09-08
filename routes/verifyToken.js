@@ -1,4 +1,8 @@
+/* Import libraries */
+
 const jwt = require('jsonwebtoken');
+
+/* Authtication route */
 
 const auth = (req, res, next) => {
   /* Checking if token cames in the header */
